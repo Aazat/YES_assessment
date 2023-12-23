@@ -11,16 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const inputField3Value = document.getElementById('inputField3').value;
 
         // Create a new paragraph element
-        // Note: creating new paragraph to append content FOR ALL FIELDS, as per my understaning i am creating new paragraph for each new inputs and not fields.
         const paragraph = document.createElement('p');
 
         // Append entered text to the paragraph
-        // Labelling the inputs with Fields, to show which input from which field is displayed.
         paragraph.textContent = `Field 1: ${inputField1Value}, Field 2: ${inputField2Value}, Field 3: ${inputField3Value}`;
 
         // Dynamically style the paragraph
-        const randomColor = getRandomColor();
-        paragraph.style.color = randomColor;
+        applyRandomStyles(paragraph);
 
         // Append the paragraph to the results div
         resultsDiv.appendChild(paragraph);
@@ -34,12 +31,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to generate a random color
     function getRandomColor() {
-        // Random generating an color code for dynamically updating style of a paragraph.
         const letters = '0123456789ABCDEF';
         let color = '#';
         for (let i = 0; i < 6; i++) {
             color += letters[Math.floor(Math.random() * 16)];
         }
         return color;
+    }
+
+    // Function to generate a random font size
+    function getRandomFontSize() {
+        const minSize = 14;
+        const maxSize = 24;
+        return `${Math.floor(Math.random() * (maxSize - minSize + 1)) + minSize}px`;
+    }
+
+    // Function to generate a random font weight
+    function getRandomFontWeight() {
+        const options = ['normal', 'bold'];
+        return options[Math.floor(Math.random() * options.length)];
+    }
+
+    // Function to generate a random font style
+    function getRandomFontStyle() {
+        const options = ['normal', 'italic'];
+        return options[Math.floor(Math.random() * options.length)];
+    }
+
+    // Function to apply random styles to a paragraph
+    function applyRandomStyles(paragraph) {
+        const randomColor = getRandomColor();
+        const randomFontSize = getRandomFontSize();
+        const randomFontWeight = getRandomFontWeight();
+        const randomFontStyle = getRandomFontStyle();
+
+        paragraph.style.backgroundColor = randomColor;
+        paragraph.style.fontSize = randomFontSize;
+        paragraph.style.fontWeight = randomFontWeight;
+        paragraph.style.fontStyle = randomFontStyle;
     }
 });
